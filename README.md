@@ -30,26 +30,26 @@ Este projeto foi desenvolvido como uma atividade académica para estudar:
 ## 📸 Telas do App
 
 ### Home
-![Home Screen](./screenshots/Home1.png)
-![Home Screen Buttons Light Mode](./screenshots/Home2Lights.png)
+![Home Screen](./screenshots/Home1.jpeg)
+![Home Screen Buttons Light Mode](./screenshots/Home2Lights.jpeg)
 
 ### Sobre Mim
-![About Screen](./screenshots/AboutMe.png)
+![About Screen](./screenshots/AboutMe.jpeg)
 
 ## 📦 Como rodar o projeto
 
 1. Abra o terminal e use o seguinte código para clonar o repositório:
-    git clone https://github.com/lucasjdutra/dev-spot.git
+    `git clone https://github.com/lucasjdutra/dev-spot.git`
 
 2. Acesse o diretorio:
-    cd dev-spot
+    `cd dev-spot`
 
 3. Instale as dependências:
-    npm install
+    `npm install`
     
 4.  Inicie o projeto:
-    npx expo start
+    `npx expo start`
         ou
-    npx expo start -c
+    `npx expo start -c`
 
 5. Escaneie o QR Code no App "Expo GO"
