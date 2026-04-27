@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { theme } from '../styles/theme';
+import { useAppTheme } from '../context/ThemeContext';
 
 interface Props {
   title: string;
@@ -9,14 +9,26 @@ interface Props {
 }
 
 export default function CustomButton({ title, onPress, variant = 'primary' }: Props) {
+  const { theme } = useAppTheme();
   const isPrimary = variant === 'primary';
+  
   return (
     <TouchableOpacity 
-      style={[styles.button, isPrimary ? styles.primaryBg : styles.outlineBg]} 
+      style={[
+        styles.button, 
+        isPrimary 
+          ? { backgroundColor: theme.colors.primary } 
+          : { backgroundColor: 'transparent', borderWidth: 1, borderColor: theme.colors.primary }
+      ]} 
       onPress={onPress}
       activeOpacity={0.8}
     >
-      <Text style={[styles.text, isPrimary ? styles.primaryText : styles.outlineText]}>
+      <Text style={[
+        styles.text, 
+        isPrimary 
+          ? { color: theme.colors.background }
+          : { color: theme.colors.primary }
+      ]}>
         {title}
       </Text>
     </TouchableOpacity>
@@ -25,9 +37,5 @@ export default function CustomButton({ title, onPress, variant = 'primary' }: Pr
 
 const styles = StyleSheet.create({
   button: { width: '100%', padding: 18, borderRadius: 2, alignItems: 'center', marginBottom: 15 },
-  primaryBg: { backgroundColor: theme.colors.primary },
-  outlineBg: { backgroundColor: 'transparent', borderWidth: 1, borderColor: theme.colors.primary },
   text: { fontSize: 14, fontWeight: 'bold', letterSpacing: 2, textTransform: 'uppercase' },
-  primaryText: { color: '#000000' },
-  outlineText: { color: theme.colors.primary },
 });
