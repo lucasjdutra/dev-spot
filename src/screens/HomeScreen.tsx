@@ -1,27 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  Image, 
-  ScrollView, 
-  Switch, 
-  Alert, 
-  TouchableOpacity,
-  Linking 
-} from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, Switch, Alert, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { FontAwesome5 } from '@expo/vector-icons';
 
-const COLORS = {
-  background: '#000000',
-  surface: '#111111', 
-  primary: '#E5E5E5',
-  accent: '#BC0000', 
-  text: '#FFFFFF',
-  textSecondary: '#888888',
-};
+import { theme } from '../styles/theme';
+import CustomButton from '../components/CustomButton';
+import SocialButton from '../components/SocialButton';
+import Footer from '../components/Footer';
 
 export default function HomeScreen() {
   const navigation = useNavigation<any>();
@@ -29,7 +14,7 @@ export default function HomeScreen() {
 
   const toggleSwitch = () => {
     setIsSwitchOn(previousState => !previousState);
-    Alert.alert("Status", "A rotina não pode ser interrompida.");
+    Alert.alert("Status", "A rotina matinal não pode ser interrompida.");
   };
 
   return (
@@ -50,30 +35,25 @@ export default function HomeScreen() {
         </Text>
         
         <Text style={styles.description}>
-          Eu tenho todas as características de um desenvolvedor front-end: React, TypeScript, Expo... mas nenhuma emoção humana identificável, exceto pela ganância por performance. Eu programo porque preciso manter minha rotina. Minha especialidade? Interfaces tão limpas que você poderia se ver nelas.
+          Eu tenho todas as características de um desenvolvedor front-end: React, TypeScript, Expo... mas nenhuma emoção humana identificável, exceto pela ganância por performance. Eu programo porque preciso manter minha rotina matinal. Minha especialidade? Interfaces tão limpas que você poderia se ver nelas.
         </Text>
 
-        <TouchableOpacity 
-          style={[styles.button, styles.primaryBg]} 
+        <CustomButton 
+          title="Sobre mim" 
           onPress={() => navigation.navigate('About')} 
-          activeOpacity={0.9}
-        >
-          <Text style={[styles.buttonText, styles.primaryText]}>Sobre mim</Text>
-        </TouchableOpacity>
+        />
 
-        <TouchableOpacity 
-          style={[styles.button, styles.outlineBg]} 
+        <CustomButton 
+          title="Entre em contato!" 
+          variant="outline"
           onPress={() => Alert.alert("Contato", "Tenho uma reserva no Dorsia às 20h. Tente mais tarde.")} 
-          activeOpacity={0.8}
-        >
-          <Text style={[styles.buttonText, styles.outlineText]}>Entre em contato!</Text>
-        </TouchableOpacity>
+        />
 
         <View style={styles.switchContainer}>
           <Text style={styles.switchText}>Modo Executivo</Text>
           <Switch
-            trackColor={{ false: '#333', true: COLORS.primary }}
-            thumbColor={isSwitchOn ? COLORS.accent : '#f4f3f4'}
+            trackColor={{ false: '#333', true: theme.colors.primary }}
+            thumbColor={isSwitchOn ? theme.colors.accent : '#f4f3f4'}
             onValueChange={toggleSwitch}
             value={isSwitchOn}
           />
@@ -81,65 +61,35 @@ export default function HomeScreen() {
 
         <Text style={styles.socialTitle}>Minhas Redes (Seja elegante):</Text>
         
-        <TouchableOpacity style={styles.socialButton} onPress={() => Linking.openURL('https://github.com')}>
-          <View style={styles.iconContainer}><FontAwesome5 name="github" size={20} color={COLORS.primary} /></View>
-          <Text style={styles.socialText}>GitHub</Text>
-          <View style={styles.spacer} /> 
-        </TouchableOpacity>
+        <SocialButton 
+          title="GitHub" 
+          iconName="github" 
+          onPress={() => Linking.openURL('https://github.com')} 
+        />
 
-        <TouchableOpacity style={styles.socialButton} onPress={() => Linking.openURL('https://linkedin.com')}>
-          <View style={styles.iconContainer}><FontAwesome5 name="linkedin" size={20} color={COLORS.primary} /></View>
-          <Text style={styles.socialText}>LinkedIn</Text>
-          <View style={styles.spacer} /> 
-        </TouchableOpacity>
+        <SocialButton 
+          title="LinkedIn" 
+          iconName="linkedin" 
+          onPress={() => Linking.openURL('https://linkedin.com')} 
+        />
 
       </ScrollView>
-
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>Desenvolvido por Lucas Dutra & Thalles Santana.</Text>
-        <Text style={styles.footerText}>Impressão em papel linho com marca d'água Silvianian.</Text>
-      </View>
+      <Footer />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: COLORS.background },
+  safeArea: { flex: 1, backgroundColor: theme.colors.background },
   scrollContainer: { padding: 24, paddingBottom: 24 },
-  
-  logo: { color: COLORS.text, fontSize: 20, letterSpacing: 4, fontWeight: '300', textAlign: 'center', marginBottom: 30 },
-  logoHighlight: { fontWeight: 'bold', color: COLORS.primary },
-  
+  logo: { color: theme.colors.text, fontSize: 20, letterSpacing: 4, fontWeight: '300', textAlign: 'center', marginBottom: 30 },
+  logoHighlight: { fontWeight: 'bold', color: theme.colors.primary },
   imageContainer: { alignItems: 'center', marginBottom: 30 },
-  image: { 
-    width: 220, 
-    height: 220, 
-    borderRadius: 4, 
-    borderWidth: 1, 
-    borderColor: '#333',
-    backgroundColor: '#000' 
-  },
-  
-  title: { color: COLORS.text, fontSize: 22, fontWeight: '600', marginBottom: 20, lineHeight: 28, textTransform: 'uppercase' },
-  highlight: { color: COLORS.accent },
-  description: { color: COLORS.textSecondary, fontSize: 14, lineHeight: 22, marginBottom: 30, fontStyle: 'italic' },
-  
-  button: { width: '100%', padding: 18, borderRadius: 2, alignItems: 'center', marginBottom: 15 }, // Botões mais quadrados
-  primaryBg: { backgroundColor: COLORS.primary },
-  outlineBg: { backgroundColor: 'transparent', borderWidth: 1, borderColor: COLORS.primary },
-  buttonText: { fontSize: 14, fontWeight: 'bold', letterSpacing: 2, textTransform: 'uppercase' },
-  primaryText: { color: '#000000' },
-  outlineText: { color: COLORS.primary },
-  
+  image: { width: 220, height: 220, borderRadius: 4, borderWidth: 1, borderColor: '#333', backgroundColor: '#000' },
+  title: { color: theme.colors.text, fontSize: 22, fontWeight: '600', marginBottom: 20, lineHeight: 28, textTransform: 'uppercase' },
+  highlight: { color: theme.colors.accent },
+  description: { color: theme.colors.textSecondary, fontSize: 14, lineHeight: 22, marginBottom: 30, fontStyle: 'italic' },
   switchContainer: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 20, borderTopWidth: 0.5, borderTopColor: '#333', paddingTop: 20 },
-  switchText: { color: COLORS.text, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 },
-  
-  socialTitle: { color: COLORS.textSecondary, fontSize: 12, marginBottom: 15, textAlign: 'center', textTransform: 'uppercase' },
-  socialButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.surface, padding: 16, borderRadius: 2, marginBottom: 10 },
-  iconContainer: { width: 30 },
-  socialText: { color: COLORS.text, fontSize: 14, flex: 1, textAlign: 'center', letterSpacing: 1 },
-  spacer: { width: 30 },
-
-  footer: { borderTopWidth: 1, borderTopColor: '#222', padding: 25, alignItems: 'center' },
-  footerText: { color: COLORS.textSecondary, fontSize: 10, textAlign: 'center', marginBottom: 4 }
+  switchText: { color: theme.colors.text, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 },
+  socialTitle: { color: theme.colors.textSecondary, fontSize: 12, marginBottom: 15, textAlign: 'center', textTransform: 'uppercase' },
 });

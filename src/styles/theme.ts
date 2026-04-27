@@ -1,9 +1,10 @@
 export const theme = {
   colors: {
-    background: '#0B132B', 
-    surface: '#1C2541', 
-    primary: '#00E5FF', 
+    background: '#000000',
+    surface: '#111111',
+    primary: '#E5E5E5',
+    accent: '#BC0000',
     text: '#FFFFFF',
-    textSecondary: '#A1A1AA',
+    textSecondary: '#888888',
   },
 };
