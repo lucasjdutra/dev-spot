@@ -35,7 +35,7 @@ export default function HomeScreen() {
         </Text>
         
         <Text style={styles.description}>
-          Eu tenho todas as características de um desenvolvedor front-end: React, TypeScript, Expo... mas nenhuma emoção humana identificável, exceto pela ganância por performance. Eu programo porque preciso manter minha rotina matinal. Minha especialidade? Interfaces tão limpas que você poderia se ver nelas.
+          Eu tenho todas as hard skills de um desenvolvedor front-end: React, TypeScript, Expo... mas nenhuma emoção humana identificável, exceto pela ganância por performance. Eu programo porque preciso manter minha rotina. Minha especialidade? Interfaces tão limpas que você poderia se ver nelas.
         </Text>
 
         <CustomButton 
