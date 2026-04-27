@@ -31,7 +31,7 @@ Este projeto foi desenvolvido como uma atividade académica para estudar:
 
 ### Home
 ![Home Screen](./screenshots/Home1.jpeg)
-![Home Screen Buttons Light Mode](./screenshots/Home2Lights.jpeg)
+![Home Screen Buttons Light Mode](./screenshots/Home2Light.jpeg)
 
 ### Sobre Mim
 ![About Screen](./screenshots/AboutMe.jpeg)
