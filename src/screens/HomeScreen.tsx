@@ -73,7 +73,7 @@ export default function HomeScreen() {
           <CustomButton 
             title="Entre em contato!" 
             variant="outline"
-            onPress={() => Alert.alert("Contato", "Tenho uma reserva no Dorsia às 20h. Tente mais tarde.")} 
+            onPress={() => Alert.alert("Contato", "Entre em contato.")} 
           />
 
           <View style={[styles.switchContainer, { borderTopColor: theme.colors.border }]}>
